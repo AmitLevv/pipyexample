@@ -11,7 +11,7 @@ requests<2.20.0
 Flask<1.0
 
 # Django vulnerabilities (versions before 2.2.1)
-Django<2.2.1
+django==4.2.26
 
 # urllib3 vulnerabilities (versions before 1.24.1)
 urllib3<1.24.1
