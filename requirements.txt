@@ -1,2 +1,5 @@
-PyYAML>3.11
-nltk
+PyYAML>=5.1
+nltk>=3.6.2
+requests>=2.20.0
+Flask>=1.0
+Django>=2.2.1
