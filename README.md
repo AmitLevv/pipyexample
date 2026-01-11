@@ -6,7 +6,7 @@ This exampale demonstrates how to build a Python Pip project with Artifactory, w
 ## Before Running the Example
 ### Set Up the Environment 
 1. Make sure **Python** is installed and the **python** command is in your PATH.
-2. Install **pip**. You can use the [Pip Documentation](https://pip.pypa.io/en/stable/installing/) and also [Installing packages using pip and virtual environments](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
+2. Installa **pip**. You can use the [Pip Documentation](https://pip.pypa.io/en/stable/installing/) and also [Installing packages using pip and virtual environments](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
 3. Create three Pypi repositories in Artifactory - a local, remote and a virtual repository. You can use the [PyPi Repositories Documentation](https://www.jfrog.com/confluence/display/RTF/PyPI+Repositories).
 * The remote repository should proxy *https://files.pythonhosted.org* (the default when creating a Pypi remote repository). 
 * Name the virtual repository *pypi*.
