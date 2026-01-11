@@ -1,4 +1,4 @@
-# Pip Example
+# Piap Example
 
 ## Overview
 This exampale demonstrates how to build a Python Pip project with Artifactory, while collecting build-info.
