@@ -5,7 +5,7 @@ PyYAML<5.1
 nltk<3.6.2
 
 # Requests vulnerabilities (versions before 2.20.0)
-requests<2.20.0
+requests==2.32.4
 
 # Flask vulnerabilities (versions before 1.0)
 Flask<1.0
