@@ -1,5 +1,29 @@
-PyYAML>=5.1
-nltk>=3.6.2
-requests>=2.20.0
-Flask>=1.0
-Django>=2.2.1
+# PyYAML vulnerability (versions before 5.1)
+PyYAML<5.1
+
+# NLTK vulnerabilities (specific versions may have issues, always check for the most current)
+nltk<3.6.2
+
+# Requests vulnerabilities (versions before 2.20.0)
+requests<2.20.0
+
+# Flask vulnerabilities (versions before 1.0)
+Flask<1.0
+
+# Django vulnerabilities (versions before 2.2.1)
+Django<2.2.1
+
+# urllib3 vulnerabilities (versions before 1.24.1)
+urllib3<1.24.1
+
+# SQLAlchemy vulnerabilities (versions before 1.4.0)
+SQLAlchemy<1.4.0
+
+# cryptography vulnerabilities (before 2.1.4)
+cryptography<2.1.4
+
+# Asyncio vulnerabilities (before 3.4.3)
+asyncio<3.4.3
+
+# werkzeug vulnerabilities (before 0.16)
+Werkzeug<0.16
