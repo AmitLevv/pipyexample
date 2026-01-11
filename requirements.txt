@@ -8,7 +8,7 @@ nltk<3.6.2
 requests<2.20.0
 
 # Flask vulnerabilities (versions before 1.0)
-Flask<1.0
+flask==2.2.5
 
 # Django vulnerabilities (versions before 2.2.1)
 Django<2.2.1
