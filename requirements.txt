@@ -2,7 +2,7 @@
 PyYAML<5.1
 
 # NLTK vulnerabilities (specific versions may have issues, always check for the most current)
-nltk<3.6.2
+nltk==3.9
 
 # Requests vulnerabilities (versions before 2.20.0)
 requests<2.20.0
