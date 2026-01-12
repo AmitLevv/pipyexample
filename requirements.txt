@@ -1,4 +1,4 @@
 # PyYAML vulnerability (versions before 5.1)
 PyYAML<5.1
 
-
+uv_build>=0.9.18,<0.10.0
