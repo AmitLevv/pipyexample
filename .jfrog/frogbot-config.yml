@@ -1,0 +1,9 @@
+- params:
+    git:
+      repoName: pipyexample
+      branches:
+        - main
+    scan:
+      projects:
+        - workingDirs:
+            - . 
