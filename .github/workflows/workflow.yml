@@ -1,7 +1,6 @@
 name: "Frogbot Security Scan"
-
 on:
-  pull_request_target: 
+  pull_request_target:
     types: [opened, synchronize] # Triggers scan-pr flow for every opened/updated pull request
   push: # Triggers scan-repo flow for every push to the specified branches
     branches:
@@ -9,63 +8,55 @@ on:
   schedule:
     - cron: "0 0 * * *"   # The repository will be scanned once a day at 00:00 GMT.
   workflow_dispatch: # The repository will be scanned on demand
-
 permissions:
   pull-requests: write
   contents: write
   security-events: write
   # [Mandatory If using OIDC authentication protocol instead of JF_ACCESS_TOKEN]
   # id-token: write
-
 jobs:
-  frogbot-scan:
-    runs-on: self-hosted
-    strategy:
-      matrix:
-        # The repository scanning will be triggered periodically on the following branches.
-        branch: ["main"]
-    steps:
-      - uses: jfrog/frogbot@v2
-        # [Mandatory if using OIDC authentication protocol instead of JF_ACCESS_TOKEN]
-        # Insert to oidc-provider-name the 'Provider Name' defined in the OIDC integration configured in the JPD
-        env:
-          JF_URL: https://idani.jfrog.io
-          JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
-          JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          JF_GIT_BASE_BRANCH: ${{ matrix.branch }}    # For repository scan action
-  
+  # frogbot-scan:
+  #   runs-on: self-hosted
+  #   strategy:
+  #     matrix:
+  #       # The repository scanning will be triggered periodically on the following branches.
+  #       branch: ["main"]
+  #   steps:
+  #     - uses: jfrog/frogbot@v2
+  #       # [Mandatory if using OIDC authentication protocol instead of JF_ACCESS_TOKEN]
+  #       # Insert to oidc-provider-name the 'Provider Name' defined in the OIDC integration configured in the JPD
+  #       env:
+  #         JF_URL: https://idani.jfrog.io
+  #         JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
+  #         JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         JF_GIT_BASE_BRANCH: ${{ matrix.branch }}    # For repository scan action
+
   scan-multiple-repositories:
     runs-on: self-hosted
     name: Scan Multiple Repositories
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup and Run Frogbot Scan Multiple Repositories
         env:
           JFROG_CLI_LOG_LEVEL: "DEBUG"
           # [Mandatory]
           # JFrog platform URL (This functionality requires version 3.29.0 or above of Xray)
           JF_URL: https://idani.jfrog.io
-
           # [Mandatory if JF_USER and JF_PASSWORD are not provided]
           # JFrog access token with 'read' permissions on Xray service
           JF_ACCESS_TOKEN: ${{ secrets.FROGBOT_ACCESS_TOKEN }}
-
           # [Mandatory]
           # The GitHub token is automatically generated for the job
           JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
           # [Optional]
           # Enable Config Profile usage from the JFrog platform (Xray/XSC).
           # If set to true, Frogbot will use Config Profiles instead of frogbot-config.yml.
           # If false or not set, Frogbot will read repository configurations from frogbot-config.yml.
           # JF_USE_CONFIG_PROFILE: true
-
           # [Optional, default: https://api.github.com]
           # API endpoint to GitHub
           # JF_GIT_API_ENDPOINT: https://github.example.com
-
           # [Optional]
           # By default, the Frogbot workflows download the Frogbot executable as well as other tools
           # needed from https://releases.jfrog.io
@@ -81,7 +72,6 @@ jobs:
           #       Uncheck the 'Store Artifacts Locally' option
           # 3. Set the value of the 'JF_RELEASES_REPO' variable with the Repository Key you created.
           # JF_RELEASES_REPO: ""
-
           ##########################################################################
           ##   The scan-multiple-repositories command reads repository            ##
           ##   configurations from a 'frogbot-config.yml' file.                  ##
@@ -101,59 +91,47 @@ jobs:
           ##         branches:                                                   ##
           ##           - main                                                    ##
           ##########################################################################
-
           # [Optional]
           # Xray Watches. Learn more about them here: https://www.jfrog.com/confluence/display/JFROG/Configuring+Xray+Watches
           # JF_WATCHES: <watch-1>,<watch-2>...<watch-n>
-
           # [Optional]
           # JFrog project. Learn more about it here: https://www.jfrog.com/confluence/display/JFROG/Projects
           # JF_PROJECT: <project-key>
-
           # [Optional, default: "TRUE"]
           # Fails the Frogbot task if any security issue is found.
           # JF_FAIL: "FALSE"
-
           # [Optional]
           # Frogbot will download the project dependencies, if they're not cached locally. To download the
           # dependencies from a virtual repository in Artifactory, set the name of the repository. There's no
           # need to set this value, if it is set in the frogbot-config.yml file.
           # JF_DEPS_REPO: ""
-
           # [Optional]
           # Template for the branch name generated by Frogbot when creating pull requests with fixes.
           # The template must include {BRANCH_NAME_HASH}, to ensure that the generated branch name is unique.
           # The template can optionally include the {IMPACTED_PACKAGE} and {FIX_VERSION} variables.
           # JF_BRANCH_NAME_TEMPLATE: "frogbot-{IMPACTED_PACKAGE}-{BRANCH_NAME_HASH}"
-
           # [Optional]
           # Template for the commit message generated by Frogbot when creating pull requests with fixes
           # The template can optionally include the {IMPACTED_PACKAGE} and {FIX_VERSION} variables.
           # JF_COMMIT_MESSAGE_TEMPLATE: "Upgrade {IMPACTED_PACKAGE} to {FIX_VERSION}"
-
           # [Optional]
           # Template for the pull request title generated by Frogbot when creating pull requests with fixes.
           # The template can optionally include the {IMPACTED_PACKAGE} and {FIX_VERSION} variables.
           # JF_PULL_REQUEST_TITLE_TEMPLATE: "[🐸 Frogbot] Upgrade {IMPACTED_PACKAGE} to {FIX_VERSION}"
-
           # [Optional, Default: "FALSE"]
           # If TRUE, Frogbot creates a single pull request with all the fixes.
           # If FALSE, Frogbot creates a separate pull request for each fix.
           # JF_GIT_AGGREGATE_FIXES: "FALSE"
-
           # [Optional, Default: "FALSE"]
           # Handle vulnerabilities with fix versions only
           # JF_FIXABLE_ONLY: "TRUE"
-
           # [Optional]
           # Set the minimum severity for vulnerabilities that should be fixed and commented on in pull requests
           # The following values are accepted: Low, Medium, High or Critical
           # JF_MIN_SEVERITY: ""
-
           # [Optional, Default: eco-system+frogbot@jfrog.com]
           # Set the email of the commit author
           # JF_GIT_EMAIL_AUTHOR: ""
-
           # [Optional]
           # Add a title to pull request comments generated by Frogbot.
           # JF_PR_COMMENT_TITLE: ""
@@ -161,4 +139,4 @@ jobs:
          # Download and setup Frogbot
           getFrogbotScriptPath=$( [[ -z "$JF_RELEASES_REPO" ]] && echo "https://releases.jfrog.io" || echo "${JF_URL}/artifactory/${JF_RELEASES_REPO}" )
           curl -fLg "$getFrogbotScriptPath/artifactory/frogbot/v2/2.0.6/getFrogbot.sh" | sh
-          frogbot scan-multiple-repositories 
+          frogbot scan-multiple-repositories
