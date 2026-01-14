@@ -29,13 +29,12 @@ jobs:
            JF_URL: https://idani.jfrog.io
            JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
            JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-           JF_GIT_BASE_BRANCH: ${{ matrix.branch }}    # For repository scan action
-  
-
-  scan-multiple-repositories:
-    runs-on: self-hosted
-    name: Scan Multiple Repositories
-    steps:
+           JF_GIT_BASE_BRANCH: ${{ matrix.branch }}    # For repository scan action 
+           
+   scan-multiple-repositories:
+     runs-on: self-hosted
+     name: Scan Multiple Repositories
+     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup and Run Frogbot Scan Multiple Repositories
