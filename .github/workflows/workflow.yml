@@ -47,7 +47,7 @@ jobs:
           JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           JF_GIT_BASE_BRANCH: ${{ matrix.branch }} 
           JF_GIT_API_ENDPOINT: https://api.github.com/
-          JF_GIT_OWNER: orto17
+          JF_GIT_OWNER: AmitLevv
           JF_GIT_REPO: pipyexample
           JFROG_CLI_LOG_LEVEL: DEBUG
           CI: True
