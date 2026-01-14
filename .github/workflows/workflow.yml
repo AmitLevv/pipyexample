@@ -139,4 +139,4 @@ jobs:
          # Download and setup Frogbot
           getFrogbotScriptPath=$( [[ -z "$JF_RELEASES_REPO" ]] && echo "https://releases.jfrog.io" || echo "${JF_URL}/artifactory/${JF_RELEASES_REPO}" )
           curl -fLg "$getFrogbotScriptPath/artifactory/frogbot/v2/2.0.6/getFrogbot.sh" | sh
-          frogbot scan-multiple-repositories
+          ./frogbot scan-multiple-repositories
