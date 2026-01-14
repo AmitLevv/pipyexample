@@ -45,7 +45,7 @@ jobs:
           JF_URL: https://idani.jfrog.io
           JF_GIT_PROVIDER: github
           JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          JF_GIT_BASE_BRANCH: ${{ matrix.branch }} 
+          JF_GIT_BASE_BRANCH: main
           JF_GIT_API_ENDPOINT: https://api.github.com/
           JF_GIT_OWNER: AmitLevv
           JF_GIT_REPO: pipyexample
