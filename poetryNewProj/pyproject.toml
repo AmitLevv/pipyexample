@@ -1,21 +1,19 @@
 [project]
-name = "poetrynewproj"
+name = "my-python-project"
 version = "0.1.0"
-description = ""
+description = "A simple Python project."
 authors = [
-    {name = "Amit Levi", email = "amitl@jfrog.com"}
+    { name = "Your Name", email = "youremail@example.com" }
 ]
-readme = "README.md"
-requires-python = ">=3.14"
-dependencies = [
-    "mu_build",        # Using the latest version of mv_build
-    "requests>=2.22.0,<3.0.0",  # Adding Requests
-    "Flask>=2.0.0,<3.0.0"       # Adding Flask
-]
+license = "MIT"
+requires-python = ">=3.7,<4.0"
 
 [tool.poetry]
-packages = [{include = "poetrynewproj", from = "src"}]
+packages = [{ include = "my_python_project", from = "src" }]  # Specify the package name and source
+
+[tool.poetry.dependencies]
+requests = "^2.26.0"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
