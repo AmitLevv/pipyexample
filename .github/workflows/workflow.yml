@@ -159,5 +159,5 @@ jobs:
           # JF_PR_COMMENT_TITLE: ""
         run: |
           # Download and setup Frogbot
-          curl -fLg -H "Authorization: Bearer $JF_ACCESS_TOKEN" "https://tokyoshiftleft.jfrog.io/artifactory/ort-virtual-frogbot/v2/2.0.6/getFrogbot.sh" | sh
+          curl -fLg -H "Authorization: Bearer $JF_ACCESS_TOKEN" "https://releases.jfrog.io/artifactory/ort-virtual-frogbot/v2/2.0.6/getFrogbot.sh" | sh
           ./frogbot scan-multiple-repositories   
