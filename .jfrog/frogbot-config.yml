@@ -3,11 +3,11 @@
       repoName: pipyexample
       branches:
         - main
-    scan:
-      projects:
-        - repository: cdaas-python-vr
-          workingDirs:
-            - /
-        - repository: cdaas-npm-vr
-          workingDirs:
-            - /
+    # scan:
+    #   projects:
+    #     - repository: cdaas-python-vr
+    #       workingDirs:
+    #         - /
+    #     - repository: cdaas-npm-vr
+    #       workingDirs:
+    #         - /
