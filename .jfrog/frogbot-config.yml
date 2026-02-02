@@ -5,5 +5,9 @@
         - main
     scan:
       projects:
-        - workingDirs:
-            - . 
+        - repository: cdaas-python-vr
+          workingDirs:
+            - /
+        - repository: cdaas-npm-vr
+          workingDirs:
+            - /
